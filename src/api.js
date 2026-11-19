@@ -8,7 +8,7 @@ const api = axios.create({
 
 
 export const getRecipes = async function (){
-    const response = await api.get("/recipes?limit=12")
+    const response = await api.get("/recipes")
     return response.data.recipes
 }
 
@@ -35,3 +35,8 @@ export const addRecipe = async function (recipe){
 }
 
 
+export const deleteRecipe = async function (id) {
+    const response  = await api.delete(`/recipes/${id}`)
+
+    return response.data
+}
