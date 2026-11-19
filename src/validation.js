@@ -1,7 +1,7 @@
 
 
 export const validationName =  function (name){
-    if(name.length === 0 || name.length < 3 || name .length> 60)
+    if(name.trim().length === 0 || name.trim().length < 3 || name.trim().length > 60)
         return false
     return true
 }
@@ -13,9 +13,9 @@ export const validationCuisine = function (cuisine){
 }
 
 export const validationDifficulty = function (difficulty){
-    if(difficulty === "") 
-        return false
-    return true
+    if(difficulty === "Easy" || difficulty === "Medium" || difficulty === "Hard") 
+        return true
+    return false
 }
 
 export const validationTime = function (time){
