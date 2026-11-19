@@ -20,7 +20,7 @@ export const createCards = function (recipe){
     div.classList.add("bg-white", "rounded-2xl", "shadow-md", "p-4", "flex", "flex-col", "gap-3")
     h2.classList.add("text-xl", "font-bold", "text-gray-800")
     img.classList.add("w-full", "h-48", "object-cover", "rounded-xl")
-    pCuisine.classList.add("text-gray-600", "text-sm")
+    pCuisine.classList.add("text-[17px]", "font-black","text-gray-700", "text-sm")
     pDifficulty.classList.add("text-gray-600", "text-sm")
     pTimeMinu.classList.add("text-gray-600", "text-sm")
     
