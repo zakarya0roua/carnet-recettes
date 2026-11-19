@@ -21,4 +21,17 @@ export const searchRecipes = async function (search){
     return response.data.recipes
 }
 
+export const addRecipe = async function (recipe){
+
+    const newRecipe = {
+        name : recipe.name,
+        cuisine : recipe.cuisine,
+        difficulty : recipe.difficulty,
+        prepTimeMinutes : recipe.prepTimeMinutes,
+    }
+    const response = await api.post("/recipes/add", newRecipe)
+
+    return response.data
+}
+
 

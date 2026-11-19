@@ -1,10 +1,11 @@
-import {searchRecipes, getRecipes} from "./api.js"
+import {searchRecipes, getRecipes, addRecipe } from "./api.js"
 import {displayRecipes} from "./affichage.js"
 import {validationName, validationCuisine, validationDifficulty, validationTime} from "./validation.js"
 
 const searchInput = document.querySelector("#search-input")
 const searchBtn = document.querySelector("#search-btn")
 const showAllBtn = document.querySelector("#show-all-btn")
+const addRecipeBtn = document.querySelector("#add-recipe-btn")
 
 // validation 
 const recipeForm = document.querySelector("#recipe-form")
@@ -18,8 +19,10 @@ const cuisineError = document.querySelector("#cuisine-error")
 const difficultyError = document.querySelector("#difficulty-error")
 const timeError = document.querySelector("#time-error")
 
-const recipe = await getRecipes()
-displayRecipes(recipe)
+const formSuccess = document.querySelector("#form-success")
+
+const recipesData = await getRecipes()
+displayRecipes(recipesData)
 
 searchBtn.addEventListener("click", async (event) => {
     event.preventDefault()
@@ -31,11 +34,11 @@ searchBtn.addEventListener("click", async (event) => {
 
 showAllBtn.addEventListener("click", async (event) => {
     event.preventDefault()
-    displayRecipes(recipe)
+    displayRecipes(recipesData)
 })
 
 
-recipeForm.addEventListener("submit", (event) => {
+recipeForm.addEventListener("submit", async (event) => {
     event.preventDefault()
     const nameValid = validationName(recipeName.value)
     const cuisineValide = validationCuisine(recipeCuisine.value)
@@ -62,7 +65,36 @@ recipeForm.addEventListener("submit", (event) => {
     if(!nameValid || !cuisineValide || !difficultyValide || !timeValide)
         return
 
+    const recipe = {
+        name : recipeName.value,
+        cuisine : recipeCuisine.value,
+        difficulty : recipeDifficulty.value,
+        prepTimeMinutes : Number(recipeTime.value),
+    }
 
+    formSuccess.textContent = ""
+    formSuccess.classList.add("hidden")
+
+    try{
+        addRecipeBtn.disabled = true
+        const newRecipe = await addRecipe(recipe)
+        recipesData.unshift(newRecipe)
+        displayRecipes(recipesData)
+
+        recipeForm.reset()
+
+        formSuccess.textContent = "Recette ajoutée avec succès !"
+        formSuccess.classList.remove("hidden")
+
+    }catch(error){
+        console.error(error); // bax n3rfo sabab !
+
+        formSuccess.textContent = "Une erreur est survenue"
+        formSuccess.classList.remove("hidden")
+    }finally{
+        addRecipeBtn.disabled = false
+
+    }
 
 })
 
