@@ -2,9 +2,9 @@
 
 Application web pour le **club cuisine de YouCode** : consulter les recettes, en chercher une, en proposer une nouvelle et retirer celles qui ne servent plus. Les données viennent de l'API publique [DummyJSON Recipes](https://dummyjson.com/docs/recipes) (sans clé).
 
-- **Dépôt GitHub** : https://github.com/zakarya0roua/<nom-du-depot>
-- **Application en ligne (GitHub Pages)** : https://zakarya0roua.github.io/<nom-du-depot>/
-- **Kanban** : <lien-du-kanban>
+- **Dépôt GitHub** : https://github.com/zakarya0roua/carnet-recettes
+- **Application en ligne (GitHub Pages)** : https://zakarya0roua.github.io/carnet-recettes/
+- **Kanban** : https://github.com/users/zakarya0roua/projects/7
 
 ## Technologies
 
@@ -76,8 +76,7 @@ Un bouton **Réessayer** relance la dernière requête.
 
 **Erreur**
 
-<!-- TODO : ajouter la capture de l'erreur (ex. couper le réseau dans DevTools) puis décommenter -->
-<!-- ![Erreur](screenshots/erreur.webp) -->
+![Erreur : serveur injoignable](screenshots/erreur.webp)
 
 ## ⚠️ Limite de l'API de démonstration
 
@@ -86,8 +85,8 @@ DummyJSON répond comme un vrai serveur, mais **n'enregistre rien**. Un ajout ou
 ## Lancer le projet en local
 
 ```bash
-git clone https://github.com/zakarya0roua/<nom-du-depot>.git
-cd <nom-du-depot>
+git clone https://github.com/zakarya0roua/carnet-recettes.git
+cd carnet-recettes
 npm install
 npm run dev
 ```
