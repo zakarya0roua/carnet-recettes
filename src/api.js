@@ -28,7 +28,6 @@ export const searchRecipes = async function (search){
 export const addRecipe = async function (recipe){
 
     const newRecipe = {
-        
         name : recipe.name,
         cuisine : recipe.cuisine,
         difficulty : recipe.difficulty,

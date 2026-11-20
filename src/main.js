@@ -76,7 +76,6 @@ searchBtn.addEventListener("click", async (event) => {
   try {
     const filter = await searchRecipes(searchInput.value);
     displayRecipes(filter);
-    errorContainer.classList.add("hidden")
 
   } catch (error) {
     errorContainer.classList.remove("hidden");
@@ -196,7 +195,6 @@ retryBtn.addEventListener("click", async (event) => {
     recipesData = await getRecipes()
     displayRecipes(recipesData)
     isLoaded = true
-    errorContainer.classList.add("hidden")
   }catch(error){
     errorContainer.classList.remove("hidden")
     showErreur(error)
