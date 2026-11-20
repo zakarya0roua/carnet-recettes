@@ -8,7 +8,11 @@ const api = axios.create({
 
 
 export const getRecipes = async function (){
-    const response = await api.get("/recipes")
+    const response = await api.get("/recipes", {
+        params: {
+            limit: 12,
+        }
+    })
     return response.data.recipes
 }
 
@@ -24,6 +28,7 @@ export const searchRecipes = async function (search){
 export const addRecipe = async function (recipe){
 
     const newRecipe = {
+        
         name : recipe.name,
         cuisine : recipe.cuisine,
         difficulty : recipe.difficulty,
