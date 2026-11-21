@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carnet de Recettes</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <script type="module" crossorigin src="/carnet-recettes/assets/index-DVdkZc6I.js"></script>
+</head>
+
+<body class="min-h-screen bg-orange-50 font-['Inter']">
+
+  <header class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-8 text-center">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-orange-600">
+        Mon carnet de recettes
+      </h1>
+
+      <p class="mt-2 text-gray-500 text-sm sm:text-base">
+        Découvrez et partagez vos recettes préférées
+      </p>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 py-8">
+    <section class="max-w-xl mx-auto mb-10 bg-white rounded-2xl shadow-md p-6">
+      <h2 class="text-2xl font-bold text-[#9e2a2b] mb-6 flex justify-center">
+        Ajouter une recette
+      </h2>
+
+      <form id="recipe-form" novalidate class="flex flex-col gap-4">
+        <div class="flex flex-col gap-2">
+          <label for="recipe-name" class="font-semibold text-[#656d4a]">
+            Nom de la recette
+          </label>
+
+          <input type="text" id="recipe-name" name="name" minlength="3" maxlength="60" placeholder="ex: Tajine marocain"
+            class="w-full px-4 py-3 border text-[#656d4a] rounded-xl outline-none focus:ring-2 focus:ring-orange-500">
+
+          <p id="name-error" class="text-red-600 text-sm"></p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="recipe-cuisine" class="font-semibold text-[#656d4a]">
+            Cuisine
+          </label>
+
+          <input type="text" id="recipe-cuisine" name="cuisine" placeholder="ex: Italian, Asian,...."
+            class="w-full px-4 py-3 border text-[#656d4a] rounded-xl outline-none focus:ring-2 focus:ring-orange-500">
+
+          <p id="cuisine-error" class="text-red-600 text-sm"></p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="recipe-difficulty" class="font-semibold text-[#656d4a]">
+            Difficulté
+          </label>
+
+          <select id="recipe-difficulty" name="difficulty"
+            class="w-full px-4 py-3 border text-[#656d4a] border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-orange-500">
+            <option value="">Choisir une difficulté</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+
+          <p id="difficulty-error" class="text-red-600 text-sm"></p>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="recipe-time" class="font-semibold text-[#656d4a]">
+            Temps de préparation (minutes)
+          </label>
+
+          <input type="number" id="recipe-time" name="prepTimeMinutes" min="1" max="300" step="1" placeholder="ex: 30"
+            class="w-full px-4 py-3 border text-[#656d4a] rounded-xl outline-none focus:ring-2 focus:ring-orange-500">
+
+          <p id="time-error" class="text-red-600 text-sm"></p>
+        </div>
+
+        <button type="submit" id="add-recipe-btn"
+          class="w-full py-3 bg-orange-600 text-white font-semibold rounded-xl hover:bg-orange-700 transition disabled:opacity-50 disabled:cursor-not-allowed">
+          Ajouter la recette
+        </button>
+
+        <p id="form-success" class="hidden text-green-600 font-semibold text-center" aria-live="polite"></p>
+
+      </form>
+    </section>
+
+
+    <section>
+      <div class="flex flex-col sm:flex-row gap-3 w-full max-w-xl mx-auto p-4">
+        <input type="text" id="search-input" placeholder="Rechercher une recette..."
+          class="flex-1 min-w-0 px-4 py-3 border border-gray-300 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
+
+        <button id="search-btn"
+          class="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition">
+          Rechercher
+        </button>
+      </div>
+
+      <div class="mb-6 flex items-center justify-between">
+        <h1 class="text-xl font-bold text-orange-700">
+          Toutes les recettes
+        </h1>
+
+        <p id="recipes-count" class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold"></p>
+      </div>
+      <p id="loading-message" class="hidden text-center text-blue-600 font-semibold py-4">
+        Chargement en cours...
+      </p>
+
+      <div id="error-container" class="hidden text-center py-4">
+        <p id="error-message" class="text-red-600 font-semibold mb-3"></p>
+
+        <button id="retry-btn" type="button"
+          class="px-6 py-3 bg-orange-600 text-white font-semibold rounded-xl hover:bg-orange-700 transition">
+          Réessayer
+        </button>
+      </div>
+      
+      <div id="recipes" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      </div>
+
+
+      <div id="empty-message" class="hidden col-span-full flex flex-col items-center gap-4 py-10">
+        <p class="text-gray-500 text-lg font-medium">
+          Aucune recette trouvée.
+        </p>
+
+        <button id="show-all-btn"
+          class="px-6 py-3 bg-orange-600 text-white font-semibold rounded-xl hover:bg-orange-700 transition">
+          Voir toutes les recettes
+        </button>
+      </div>
+    </section>
+  </main>
+
+
+</body>
+
+</html>
