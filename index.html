@@ -6,14 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carnet de Recettes</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
 </head>
 
-<body class="min-h-screen bg-orange-50 font-['Inter']">
+<body class="min-h-screen bg-orange-50 font-['Inter',sans-serif]">
 
   <header class="bg-white shadow-sm">
     <div class="max-w-7xl mx-auto px-4 py-8 text-center">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-orange-600">
         Mon carnet de recettes
       </h1>
 
@@ -102,9 +107,9 @@
       </div>
 
       <div class="mb-6 flex items-center justify-between">
-        <h1 class="text-xl font-bold text-orange-700">
+        <h2 class="text-xl font-bold text-orange-700">
           Toutes les recettes
-        </h1>
+        </h2>
 
         <p id="recipes-count" class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-semibold"></p>
       </div>
