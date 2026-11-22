@@ -1,19 +1,25 @@
-export const validationName = function (name) {
-    const length = name.trim().length
-    return length >= 3 && length <= 60
+
+
+export const validationName =  function (name){
+    if(name.trim().length === 0 || name.trim().length < 3 || name.trim().length > 60)
+        return false
+    return true
 }
 
-export const validationCuisine = function (cuisine) {
-    return cuisine.trim().length > 0
+export const validationCuisine = function (cuisine){
+    if(cuisine.trim().length === 0)
+        return false
+    return true
 }
 
-export const validationDifficulty = function (difficulty) {
-    return difficulty === "Easy" || difficulty === "Medium" || difficulty === "Hard"
+export const validationDifficulty = function (difficulty){
+    if(difficulty === "Easy" || difficulty === "Medium" || difficulty === "Hard") 
+        return true
+    return false
 }
 
-export const validationTime = function (time) {
-    const value = String(time).trim()
-    if (value === "") return false
-    const number = Number(value)
-    return Number.isInteger(number) && number >= 1 && number <= 300
+export const validationTime = function (time){
+    if(time <= 0 || time > 300 || time.trim().length === 0 || Number.isNaN(Number(time)))
+        return false
+    return true
 }

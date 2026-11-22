@@ -24,12 +24,14 @@ Application web pour le **club cuisine de YouCode** : consulter les recettes, en
 
 ## Structure du projet
 
+> ⚠️ Adapte les noms de fichiers à ton dépôt.
+
 | Fichier | Rôle |
 |---|---|
 | `index.html` | Structure de la page (formulaire, recherche, liste, messages) |
 | `src/api.js` | Instance Axios (`axios.create` avec `baseURL` et `timeout`) et fonctions d'appel : `getRecipes`, `searchRecipes`, `addRecipe`, `deleteRecipe` |
 | `src/validation.js` | Validation du formulaire avant envoi (aucun POST si une erreur existe) |
-| `src/affichage.js` | Affichage : cartes, compteur, chargement, messages d'erreur, « aucun résultat », succès |
+| `src/ui.js` | Affichage : cartes, compteur, chargement, messages d'erreur, « aucun résultat », succès |
 | `src/main.js` | Point d'entrée : écouteurs d'événements, relie API, validation et affichage |
 
 ## Tableau des requêtes
@@ -51,9 +53,8 @@ Base URL : `https://dummyjson.com`
 | 404 | Recette introuvable |
 | 500 | Erreur du serveur |
 | Liste vide | Aucune recette trouvée |
-| Ajout / suppression en échec | Même messages (injoignable, 404, 500), affichés en rouge |
 
-Un bouton **Réessayer** relance la dernière requête (liste ou recherche). Timeout Axios : 8 secondes.
+Un bouton **Réessayer** relance la dernière requête.
 
 ## Captures d'écran
 
@@ -81,8 +82,6 @@ Un bouton **Réessayer** relance la dernière requête (liste ou recherche). Tim
 
 DummyJSON répond comme un vrai serveur, mais **n'enregistre rien**. Un ajout ou une suppression renvoie une réponse correcte, mais au rechargement de la page la liste d'origine (12 recettes) revient. L'application met donc à jour l'affichage à partir de la réponse du serveur, sans persistance réelle.
 
-Conséquence : une recette ajoutée reçoit un `id` côté serveur mais n'existe pas vraiment ; la supprimer renvoie donc une erreur **404** (message « Recette introuvable (404) » affiché en rouge). Les recettes ajoutées n'ont pas de photo (un bloc « Pas d'image » est affiché).
-
 ## Lancer le projet en local
 
 ```bash
@@ -92,7 +91,7 @@ npm install
 npm run dev
 ```
 
-Puis ouvrir http://localhost:5173/carnet-recettes/ (le `base` de Vite est `/carnet-recettes/`).
+Puis ouvrir http://localhost:5173.
 
 ## Scénarios de test manuels
 
