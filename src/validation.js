@@ -19,7 +19,7 @@ export const validationDifficulty = function (difficulty){
 }
 
 export const validationTime = function (time){
-    if(time <= 0 || time > 300 || time.trim().length === 0 || Number.isNaN(Number(time)))
+    if(time < 1 || time > 300 || time.trim().length === 0 || Number.isNaN(Number(time)))
         return false
     return true
 }

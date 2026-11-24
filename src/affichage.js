@@ -13,9 +13,10 @@ export const createCards = function (recipe){
     const buttonSupprime = document.createElement("button")
     
     h2.textContent = recipe.name
-    img.src = recipe.image
-    pCuisine.textContent = `cuisine : ${recipe.cuisine}`
-    pDifficulty.textContent = `difficulty : ${recipe.difficulty}`
+    img.src = recipe.image ?? "https://placehold.co/600x400?text=Pas+d'image";
+    img.alt = recipe.name
+    pCuisine.textContent = `Cuisine : ${recipe.cuisine}`
+    pDifficulty.textContent = `Difficulté : ${recipe.difficulty}`
     pTimeMinu.textContent = `${recipe.prepTimeMinutes} min`
 
     buttonSupprime.textContent = "Supprimer"
@@ -50,4 +51,5 @@ export const displayRecipes = function (recipesData){
     recipesData.forEach((recipe) => {
         recipes.append(createCards(recipe))
     })
+    
 }
